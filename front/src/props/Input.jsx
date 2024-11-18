@@ -10,7 +10,7 @@ export function InputText(props, required=true) {
                    value={props.value}
                    onChange={props.onChange}
                    required={required}
-                   className="authInputs"
+                   className={props.class}
             />
         </label>
     )

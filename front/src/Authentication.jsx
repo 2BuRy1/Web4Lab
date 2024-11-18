@@ -38,9 +38,25 @@ export function Authentication() {
     return(
         <div className="authentication">
         <h1>Authentication</h1>
-        <InputText id="username" type="text" name="Login" onChange ={(e) =>handleLogin(e)} value = {login} />
-        <InputText id="password" type="password" name="Password" onChange ={(e) =>handlePassword(e)} value ={password} />
-        <Button onClick={handleSubmit} value="Вход" id = "registerButton"></Button>
+        <InputText id="username"
+                   type="text"
+                   name="Login"
+                   onChange ={(e) =>handleLogin(e)}
+                   value = {login}
+                   class="authInputs"
+        />
+        <InputText id="password"
+                   type="password"
+                   name="Password"
+                   onChange ={(e) =>handlePassword(e)}
+                   value ={password}
+                   class="authInputs"
+        />
+        <Button onClick={handleSubmit}
+                value="Вход"
+                id = "registerButton"
+                class="authInputs"
+        />
         </div>
     )
 

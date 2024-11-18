@@ -48,10 +48,32 @@ export function Registration() {
     return(
         <div className="registration">
             <h1>Registration</h1>
-            <InputText id="username" type="text" name="Login" onChange ={(e) =>handleLogin(e)} value = {login} />
-            <InputText id="password" type="password" name="Password" onChange ={(e) =>handlePassword(e)} value ={password} />
-            <InputText id="password" type="password" name="Password" onChange ={(e) =>handleSecondPassword(e)} value ={secondPassword} />
-            <Button onClick={handleSubmit} value="Зарегистрироваться" id = "registerButton"></Button>
+            <InputText id="username"
+                       type="text"
+                       name="Login"
+                       onChange ={(e) =>handleLogin(e)}
+                       value = {login}
+                       class="authInputs"
+            />
+            <InputText id="password"
+                       type="password"
+                       name="Password"
+                       onChange ={(e) =>handlePassword(e)}
+                       value ={password}
+                       class="authInputs"
+            />
+            <InputText id="password"
+                       type="password"
+                       name="Password"
+                       onChange ={(e) =>handleSecondPassword(e)}
+                       value ={secondPassword}
+                       class="authInputs"
+            />
+            <Button onClick={handleSubmit}
+                    value="Зарегистрироваться"
+                    id = "registerButton"
+                    class="authInputs"
+            />
         </div>
     )
 
