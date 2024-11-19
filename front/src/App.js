@@ -4,29 +4,14 @@ import "./styles/style.css"
 import {Main} from "./Main";
 
 function App() {
+ const[isAuthenticated, setIsAuthenticated] = React.useState(false);
 
-    let flag = true;
-
-    if (window.location.pathname === "/") {
-        return (
-            <Main/>
-        )
-    }
+ return (
 
 
-    if (window.location.pathname === "/login") {
-        if (flag) {
-            return (
-                <Authentication/>
-            )
-        }
-        window.location.pathname = "/";
-    }
-    if (window.location.pathname === "/register") {
-        return (
-            <Registration/>
-        )
-    }
+
+
+ )
 
 
 }

@@ -1,0 +1,30 @@
+version: '3.0'
+
+networks:
+
+    it-mo:
+
+services:
+
+  back:
+    build:
+      context: ./
+      dockerfile: ./back/Dockerfile
+    networks:
+      - it-mo
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+
+
+  database:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mydb
+    networks:
+      - it-mo

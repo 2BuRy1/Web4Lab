@@ -21,9 +21,6 @@ export function Main(){
     }
 
 
-
-
-
     function handleXChange(e){
     setXButtonValue(e.target.value);
 
