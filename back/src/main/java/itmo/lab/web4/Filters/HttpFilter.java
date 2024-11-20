@@ -29,8 +29,11 @@ public class HttpFilter {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.httpBasic().disable()
-                .csrf(csrf -> csrf.disable())
+        http.cors()
+                .and()
+                .httpBasic().disable()
+                .csrf().disable()
+                .addFilterBefore(jwtSecurityFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                         .requestMatchers("/register", "/login").permitAll()
                         .anyRequest().authenticated()
@@ -38,8 +41,8 @@ public class HttpFilter {
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
-                .authenticationProvider(authProvider)
-                .addFilterBefore(jwtSecurityFilter, UsernamePasswordAuthenticationFilter.class);
+                .authenticationProvider(authProvider);
+
         return http.build();
     }
 }

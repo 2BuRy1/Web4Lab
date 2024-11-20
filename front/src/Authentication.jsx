@@ -28,12 +28,12 @@ export function Authentication() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXBraSIsImlhdCI6MTczMjExMjM0MywiZXhwIjoxNzMyMTk4NzQzfQ.E0_GygimdT2HtaVXkWkBnTbb5NZb64GFdxmN52rTkjk",
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb2wiLCJpYXQiOjE3MzIxMjIxOTMsImV4cCI6MTczMjIwODU5M30.2crKNfMG7-OFyz0FUJ2mryiXBkOHGCAagrqtZYy516I",
             },
-            // body: JSON.stringify({
-            //     username: login,
-            //     password: password
-            // })
+            body: JSON.stringify({
+                username: login,
+                password: password
+            })
         }
 
         fetch("http://localhost:8080/login", requestContent ).then(response => response.json())

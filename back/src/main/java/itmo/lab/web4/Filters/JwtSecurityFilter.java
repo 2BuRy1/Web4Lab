@@ -23,6 +23,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.net.PasswordAuthentication;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 @Component
 public class JwtSecurityFilter extends OncePerRequestFilter {
@@ -34,6 +35,9 @@ public class JwtSecurityFilter extends OncePerRequestFilter {
     @Autowired
    private UserDetailsService userDetailsService;
 
+    @Autowired
+    Logger logger;
+
 
 
     @Override
@@ -41,12 +45,17 @@ public class JwtSecurityFilter extends OncePerRequestFilter {
         String authorization = request.getHeader("Authorization");
 
 
+        logger.info(authorization);
+
+        logger.info(request.getParameter("x"));
+
         String jwtToken = null;
         String username = null;
 
         if(authorization != null && authorization.startsWith("Bearer ")) {
             jwtToken = authorization.substring(7);
             username = jwtUtil.extractUsername(jwtToken);
+            logger.info(username);
         }
 
             if(username != null && SecurityContextHolder.getContext().getAuthentication() == null) {

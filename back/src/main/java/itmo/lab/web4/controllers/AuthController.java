@@ -4,6 +4,7 @@ import itmo.lab.web4.models.User;
 import itmo.lab.web4.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +40,13 @@ public class AuthController {
 
         return ResponseEntity.ok(response);
     }
+    @GetMapping("/rofls")
+    public ResponseEntity<Map<String, String>> getRofls() {
+        HashMap <String, String> map = new HashMap<>();
+        map.put("rofl", "rofl");
+        return ResponseEntity.ok(map);
+    }
+
 
 
 

@@ -69,22 +69,22 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true; // Аккаунт не истёк
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true; // Аккаунт не заблокирован
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true; // Учетные данные не истекли
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return true; // Аккаунт активен
+        return true;
     }
 
     public enum Roles implements GrantedAuthority {
