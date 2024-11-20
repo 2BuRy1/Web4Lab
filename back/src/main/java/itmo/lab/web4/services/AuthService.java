@@ -2,15 +2,24 @@ package itmo.lab.web4.services;
 
 import itmo.lab.web4.models.User;
 import itmo.lab.web4.repositories.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.logging.Logger;
+
+@Slf4j
 @Service
 public class AuthService {
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
+    Logger logger;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -23,22 +32,33 @@ public class AuthService {
 
 
     public String register(User newUser) {
-        var user = org.springframework.security.core.userdetails.User.builder()
-                .username(newUser.getUsername())
-                .password(newUser.getPassword())
-                .roles(String.valueOf(User.Roles.USER))
-                .build();
-        userRepository.save(newUser);
 
-        return jwtUtil.generateToken(user.getUsername());
+        User user = new User();
+        user.setUsername(newUser.getUsername());
+        user.setPassword(passwordEncoder.encode(newUser.getPassword()));
+        user.setRole(User.Roles.USER);
 
+        userRepository.save(user);
 
+        logger.info("Username: " + newUser.getUsername());
+        logger.info("Password: " + passwordEncoder.encode(newUser.getPassword()));
+
+        org.springframework.security.core.userdetails.User securityUser =
+                (org.springframework.security.core.userdetails.User) org.springframework.security.core.userdetails.User.builder()
+                        .username(user.getUsername())
+                        .password(user.getPassword())
+                        .roles(String.valueOf(User.Roles.USER))
+                        .build();
+
+        return jwtUtil.generateToken(securityUser.getUsername());
     }
 
     public String login(User presentUser){
         authenticationManager.
                 authenticate(new UsernamePasswordAuthenticationToken(presentUser.getUsername(),
-                        presentUser.getPassword()));
+                       presentUser.getPassword()));
+        logger.info("Username: " + presentUser.getUsername());
+        logger.info("Password: " + presentUser.getPassword());
 
         User user = userRepository.findByUsername(presentUser.getUsername()).orElseThrow();
 

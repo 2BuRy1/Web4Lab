@@ -1,11 +1,12 @@
 itmo/lab/web4/services/AuthService.class
-itmo/lab/web4/services/JwtUtil.class
-itmo/lab/web4/controllers/AuthController.class
 itmo/lab/web4/models/User$Roles.class
 itmo/lab/web4/configurations/WebConfig.class
 itmo/lab/web4/repositories/UserRepository.class
-itmo/lab/web4/Web4Application.class
 itmo/lab/web4/models/User.class
 itmo/lab/web4/Filters/HttpFilter.class
 itmo/lab/web4/configurations/AuthConfiguration.class
+itmo/lab/web4/services/JwtUtil.class
+itmo/lab/web4/controllers/AuthController.class
+itmo/lab/web4/Web4Application.class
+itmo/lab/web4/configurations/LoggerConfig.class
 itmo/lab/web4/Filters/JwtSecurityFilter.class

@@ -2,6 +2,7 @@
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/Filters/JwtSecurityFilter.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/Web4Application.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/configurations/AuthConfiguration.java
+/Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/configurations/LoggerConfig.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/configurations/WebConfig.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/controllers/AuthController.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/models/User.java
