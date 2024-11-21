@@ -1,74 +1,92 @@
 import {InputText} from "./props/Input";
 import {useState} from "react";
 import {Button} from "./props/Button";
+import {useNavigate} from "react-router-dom";
 
 
-export function Authentication() {
+export function Authentication({ setIsAuthenticated }) {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
-    function handlePassword(e){
+    function handlePassword(e) {
         setPassword(e.target.value);
     }
 
-
-    function handleLogin(e){
+    function handleLogin(e) {
         setLogin(e.target.value);
     }
 
-
-    function validate(){
+    function validate() {
         return !((login.trim().length > 0 || password.trim().length > 0) && (login.trim() === "" || password.trim() === ""));
-
-
     }
 
-    function handleSubmit(){
+    function handleSubmit() {
         let requestContent = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb2wiLCJpYXQiOjE3MzIxMjIxOTMsImV4cCI6MTczMjIwODU5M30.2crKNfMG7-OFyz0FUJ2mryiXBkOHGCAagrqtZYy516I",
             },
             body: JSON.stringify({
                 username: login,
-                password: password
-            })
+                password: password,
+            }),
+        };
+
+        if (!validate()) {
+            return;
         }
 
-        fetch("http://localhost:8080/login", requestContent ).then(response => response.json())
-            .then(data => console.log(data));
-
-
+        fetch("http://localhost:8080/register", requestContent)
+            .then(response => {
+                if (response.ok) {
+                    response.json().then((data) => {
+                        if (data.token) {
+                            localStorage.setItem("jwt", data.token);
+                            setIsAuthenticated(true);
+                            navigate("/main");
+                        }
+                    });
+                } else {
+                    alert("Expired Token")
+                }
+            });
     }
 
-
-
-    return(
-        <div className="authentication">
-        <h1>Authentication</h1>
-        <InputText id="username"
-                   type="text"
-                   name="Login"
-                   onChange ={(e) =>handleLogin(e)}
-                   value = {login}
-                   class="authInputs"
-        />
-        <InputText id="password"
-                   type="password"
-                   name="Password"
-                   onChange ={(e) =>handlePassword(e)}
-                   value ={password}
-                   class="authInputs"
-        />
-        <Button onClick={handleSubmit}
-                value="Вход"
-                id = "registerButton"
-                class="authInputs"
-        />
+    return (
+        <div className="authenticationContainer">
+            <div className="registerNavigate">
+                <Button
+                    onClick={() => navigate("/register")}
+                    value="Зарегистрироваться"
+                    id="toRegisterButton"
+                />
+            </div>
+            <div className="authentication">
+                <h1>Authentication</h1>
+                <InputText
+                    id="username"
+                    type="text"
+                    name="Login"
+                    onChange={(e) => handleLogin(e)}
+                    value={login}
+                    class="authInputs"
+                />
+                <InputText
+                    id="password"
+                    type="password"
+                    name="Password"
+                    onChange={(e) => handlePassword(e)}
+                    value={password}
+                    class="authInputs"
+                />
+                <Button
+                    onClick={handleSubmit}
+                    value="Вход"
+                    id="registerButton"
+                    class="authInputs"
+                />
+            </div>
         </div>
-    )
-
-
-
+    );
 }

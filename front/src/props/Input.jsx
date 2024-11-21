@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {forwardRef, useState} from "react";
 
 
 export function InputText(props, required=true) {
@@ -17,5 +17,7 @@ export function InputText(props, required=true) {
 
 }
 
+
+export default forwardRef(InputText)
 
 
