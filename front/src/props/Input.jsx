@@ -18,6 +18,6 @@ export function InputText(props, required=true) {
 }
 
 
-export default forwardRef(InputText)
+
 
 

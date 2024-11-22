@@ -20,7 +20,7 @@ function App() {
                 <Route
                     path="/main"
                     element={
-                        isAuthenticated ? <Main /> : <Navigate to="/login" />
+                        isAuthenticated ? <Main setAuthenticated = {setIsAuthenticated}/> : <Navigate to="/login" />
                     }
                 />
                 <Route

@@ -102,16 +102,12 @@
                 ctx.font = '16px Arial';
                 ctx.fillStyle = '#000000';
 
-                ctx.fillText('-R', Xcanvas / 2 - scale, Ycanvas / 2 + 20);
-                ctx.fillText('-R/2', Xcanvas / 2 - scale / 2, Ycanvas / 2 + 20);
-                ctx.fillText('R/2', Xcanvas / 2 + scale / 2, Ycanvas / 2 + 20);
-                ctx.fillText('R', Xcanvas / 2 + scale, Ycanvas / 2 + 20);
-
-                ctx.fillText('R', Xcanvas / 2 - 20, Ycanvas / 2 - scale);
-                ctx.fillText('R/2', Xcanvas / 2 - 20, Ycanvas / 2 - scale / 2);
-                ctx.fillText('-R/2', Xcanvas / 2 - 20, Ycanvas / 2 + scale / 2);
-                ctx.fillText('-R', Xcanvas / 2 - 20, Ycanvas / 2 + scale);
-            }
+            //     ctx.fillText('-R', Xcanvas / 2 - scale , Ycanvas / 2 - 20);
+                ctx.fillText('R', Xcanvas / 2 + scale -20, Ycanvas / 2 + 20);
+            //
+                ctx.fillText('R', Xcanvas / 2 - 20, Ycanvas / 2 - scale+20);
+            //     ctx.fillText('-R', Xcanvas / 2 + 10, Ycanvas / 2 + scale-10);
+             }
 
             function drawGraph() {
                 clearCanvas();

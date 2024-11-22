@@ -1,15 +1,16 @@
 import {InputText} from "./props/Input";
 import {Button} from "./props/Button";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Canvas} from "./Canvas";
+import {useNavigate} from "react-router-dom";
 
 
-export function Main(){
+export function Main( {setAuthenticated} ){
 
     const [xButtonValue, setXButtonValue] = useState("");
     const [yInputValue, setYInputValue] = useState("");
     const [rButtonValue, setRButtonValue] = useState("");
-
+    const navigate = useNavigate();
 
     function handleYInput(e){
         setYInputValue(e.target.value);
@@ -25,6 +26,65 @@ export function Main(){
     setXButtonValue(e.target.value);
 
     }
+
+    function handleAddPoint(){
+
+
+        const requestContent = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
+            },
+            body: JSON.stringify({
+                x: xButtonValue,
+                y: yInputValue,
+                r: rButtonValue,
+            })
+
+        }
+
+        fetch("http://localhost:8080/addPoint", requestContent)
+            .then(response => response.json())
+            .then((data) => console.log(data))
+
+
+    }
+
+
+    useEffect(() => {
+
+
+        const requestContent = {
+            method: "GET",
+            headers:{
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            }
+
+
+        }
+
+
+        fetch("http://localhost:8080/points",requestContent )
+            .then(response => {
+                if(!response.ok) {
+                    setAuthenticated(false);
+                    localStorage.removeItem("jwt");
+                    navigate("/login")
+                }
+                else{
+                    response.json().then((data) => {
+                        const points = data.points; points.forEach((point) => {
+                            console.log(point)
+                        })
+
+                    });
+                }
+
+            })
+
+    }, []);
+
 
 
 
@@ -108,6 +168,7 @@ export function Main(){
             <div className="canvasSelection">
                     <Canvas rValue={rButtonValue}/>
                 </div>
+            <input type={"button"} onClick={handleAddPoint}/>
 
 
 

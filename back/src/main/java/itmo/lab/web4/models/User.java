@@ -6,15 +6,15 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 @Entity
-@Table(name = "__users")
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "_user")
 public class User implements UserDetails {
 
     @Id
@@ -29,6 +29,10 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Roles role;
+
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Point> points;
 
 
     public void setId(Long id) {
@@ -94,5 +98,9 @@ public class User implements UserDetails {
         public String getAuthority() {
             return "ROLE_" + name();
         }
+    }
+
+    public long getId(){
+        return id;
     }
 }

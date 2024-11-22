@@ -9,7 +9,7 @@ export function Registration({ setIsAuthenticated }) {
     const [password, setPassword] = useState('');
     const [secondPassword, setSecondPassword] = useState('');
     const navigate = useNavigate();
-
+    const secondPasswordRef = useRef(null);
 
     function handlePassword(e) {
         setPassword(e.target.value);
@@ -51,7 +51,7 @@ export function Registration({ setIsAuthenticated }) {
         };
 
         if (!validate()) {
-            return;
+            secondPasswordRef.current.classList.add("is-invalid");
         }
 
         fetch("http://localhost:8080/register", requestContent)
