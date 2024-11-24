@@ -8,6 +8,7 @@ export function Registration({ setIsAuthenticated }) {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [secondPassword, setSecondPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
     const secondPasswordRef = useRef(null);
 
@@ -65,9 +66,14 @@ export function Registration({ setIsAuthenticated }) {
                         }
                     });
                 } else {
-                    alert("Expired Token")
+                    if(response.status === 409) {
+                        setErrorMessage("Имя пользователя занято");
+                    }
                 }
-            });
+            })
+            .catch(() => {
+                setErrorMessage("Ошибка подключения к серверу");
+            });;
     }
 
 
@@ -107,6 +113,7 @@ export function Registration({ setIsAuthenticated }) {
                            ref = {secondPasswordRef}
 
                 />
+                {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
                 <Button onClick={handleSubmit}
                         value="Зарегистрироваться"
                         id="registerButton"

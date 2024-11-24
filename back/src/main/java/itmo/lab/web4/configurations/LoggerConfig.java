@@ -15,10 +15,6 @@ public class LoggerConfig {
         Logger logger = Logger.getLogger(LoggerConfig.class.getName());
         logger.setLevel(Level.INFO);
 
-//        ConsoleHandler consoleHandler = new ConsoleHandler();
-//        consoleHandler.setLevel(Level.INFO);
-//
-//        logger.addHandler(consoleHandler);
 
         return logger;
     }

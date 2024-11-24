@@ -1,5 +1,3 @@
-/Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/Filters/HttpFilter.java
-/Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/Filters/JwtSecurityFilter.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/Web4Application.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/configurations/AuthConfiguration.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/configurations/LoggerConfig.java
@@ -7,6 +5,8 @@
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/controllers/AuthController.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/controllers/PointsController.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/exceptionHandler/GlobalExceptionHandler.java
+/Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/filters/HttpFilter.java
+/Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/filters/JwtSecurityFilter.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/models/Point.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/models/User.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/repositories/PointRepository.java

@@ -2,6 +2,7 @@ package itmo.lab.web4.controllers;
 
 import itmo.lab.web4.models.User;
 import itmo.lab.web4.services.AuthService;
+import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +35,7 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<Map<String, String>> register(@RequestBody User user){
+    public ResponseEntity<Map<String, String>> register(@RequestBody User user) throws BadRequestException {
 
         String token = authService.register(user);
 

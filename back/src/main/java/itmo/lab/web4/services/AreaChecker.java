@@ -42,7 +42,7 @@ public class AreaChecker {
         return (point.getX() * point.getR() <= 0 &&
                 point.getY() * point.getR() >= 0 &&
                 point.getX() >= -point.getR() &&
-                point.getY() >= point.getR() / 2);
+                point.getY() <= point.getR() / 2);
     }
 
 

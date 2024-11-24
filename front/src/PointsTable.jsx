@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./styles/style.css"
 
 export function PointsTable({ points, newPoint }) {
     const [tablePoints, setTablePoints] = useState([]);
@@ -35,7 +36,7 @@ export function PointsTable({ points, newPoint }) {
             </tr>
             </thead>
             <tbody>
-            { (
+            {(
                 tablePoints.map((point, index) => (
                     <tr key={index} className={point.status ? "hit" : "miss"}>
                         <td>{point.x}</td>
@@ -44,7 +45,7 @@ export function PointsTable({ points, newPoint }) {
                         <td>{point.status ? "Hit" : "Miss"}</td>
                     </tr>
                 ))
-            ) }
+            )}
             </tbody>
         </table>
     );

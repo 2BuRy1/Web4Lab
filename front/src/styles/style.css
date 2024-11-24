@@ -67,8 +67,8 @@ body{
 }
 
 main{
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: 80%;
     display: flex;
     flex-direction: row;
     place-items: center;
@@ -82,7 +82,7 @@ main{
     border: 1px solid black;
     border-radius: 40px;
     display: flex;
-    height: 50%;
+    height: auto;
     flex-direction: row;
     width: 40%;
     justify-content: center;
@@ -92,6 +92,8 @@ main{
 
 .xSelection{
     display: grid;
+    height: auto;
+    width: auto;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
 }
@@ -224,4 +226,72 @@ main{
     width: 100%;
     height: 100%;
 
+}
+.mainPage{
+    height: 100%;
+    width: 100%;
+}
+
+.pointsSection{
+    height: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+
+.selection-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+.xSelection h3,
+.ySelection h3,
+.rSelection h3 {
+    margin-top: 1rem;
+}
+
+.mainHeader{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+
+}
+
+.pointsSection{
+    height: 100px;
+    max-height: 10rem;
+    overflow: scroll;
+}
+
+.points-table {
+    width: 20%;
+    height: auto;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.points-table th, .points-table td {
+    border: 1px solid black;
+    padding: 0.5rem;
+}
+
+
+.points-table td{
+    border-radius: 15px;
+}
+
+.points-table thead {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+.points-table .hit {
+    background-color: #d4edda;
+}
+
+.points-table .miss {
+    background-color: #f8d7da;
 }

@@ -1,12 +1,13 @@
-import {InputText} from "./props/Input";
-import {useState} from "react";
-import {Button} from "./props/Button";
-import {useNavigate} from "react-router-dom";
-
+import { InputText } from "./props/Input";
+import { useRef, useState } from "react";
+import { Button } from "./props/Button";
+import { useNavigate } from "react-router-dom";
 
 export function Authentication({ setIsAuthenticated }) {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const usernameRef = useRef(null);
     const navigate = useNavigate();
 
     function handlePassword(e) {
@@ -37,6 +38,8 @@ export function Authentication({ setIsAuthenticated }) {
             return;
         }
 
+        setErrorMessage("");
+
         fetch("http://localhost:8080/login", requestContent)
             .then(response => {
                 if (response.ok) {
@@ -48,8 +51,13 @@ export function Authentication({ setIsAuthenticated }) {
                         }
                     });
                 } else {
-                    alert("Expired Token")
+                    if(response.status === 409) {
+                        setErrorMessage("Имя пользователя не найдено или неверный пароль");
+                    }
                 }
+            })
+            .catch(() => {
+                setErrorMessage("Ошибка подключения к серверу");
             });
     }
 
@@ -68,10 +76,12 @@ export function Authentication({ setIsAuthenticated }) {
                     id="username"
                     type="text"
                     name="Login"
+                    ref={usernameRef} // Привязка ссылки к полю ввода
                     onChange={(e) => handleLogin(e)}
                     value={login}
                     class="authInputs"
                 />
+
                 <InputText
                     id="password"
                     type="password"
@@ -80,6 +90,7 @@ export function Authentication({ setIsAuthenticated }) {
                     value={password}
                     class="authInputs"
                 />
+                {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
                 <Button
                     onClick={handleSubmit}
                     value="Вход"

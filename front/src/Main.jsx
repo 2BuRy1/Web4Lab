@@ -15,8 +15,15 @@ export function Main( {setAuthenticated} ){
     const [rButtonValue, setRButtonValue] = useState(1);
     const [serverData, setServerData] = useState({});
     const [allUserPoints, setAllUserPoints] = useState([]);
+    const [newDot, setNewDot] = useState({});
     const navigate = useNavigate();
     const yRef = useRef(null)
+
+
+    function handleExit(){
+        localStorage.removeItem("jwt");
+        navigate("/login")
+    }
 
 
     useEffect(() => {
@@ -103,11 +110,10 @@ export function Main( {setAuthenticated} ){
 
         fetch("http://localhost:8080/checkHit", requestContent)
             .then(response => response.json())
-            .then((data) => console.log(data))
+            .then((data) => setNewDot(data))
 
 
     }
-
 
     useEffect(() => {
 
@@ -142,11 +148,21 @@ export function Main( {setAuthenticated} ){
 
 
 
-    return(
+    return (
+        <div className={"mainPage"}>
+
+            <div className="mainHeader">
+                <Button onClick={handleExit}
+                        value="Выйти"
+                        class="xButtons"
+                        />
+            </div>
+
         <main>
             <div className="variables">
 
                 <div className="xSelection">
+                    <h3 className="selection-label">X:</h3>
                     <Button onClick={(e) => handleXChange(e)}
                             value="-2"
                             class="xButtons"
@@ -186,6 +202,7 @@ export function Main( {setAuthenticated} ){
                 </div>
 
                 <div className="ySelection">
+                    <h3 className="selection-label">Y:</h3>
                     <InputText id="yInput"
                                type="text"
                                name="-5...3"
@@ -198,6 +215,7 @@ export function Main( {setAuthenticated} ){
 
 
                 <div className="rSelection" id="rButtons">
+                    <h3 className="selection-label">R:</h3>
                     <Button
                         onClick={(e) => handleRChange(e)}
                         value="1"
@@ -220,26 +238,26 @@ export function Main( {setAuthenticated} ){
                         class="rButtons"/>
                     <Button
                         onClick={(e) => handleAddPoint(e)}
-                        value = "Отправить"
-                        class = "sendButton"
+                        value="Отправить"
+                        class="sendButton"
                     />
                 </div>
             </div>
             <div className="canvasSelection">
-                    <Canvas rValue={rButtonValue} />
-                    <DotsCanvas setServerData={setServerData} rValue={rButtonValue} points={allUserPoints}/>
-                </div>
-            <div className="tableSection">
-
-                <PointsTable points={allUserPoints} newPoint={serverData}/>
-
+                <Canvas rValue={rButtonValue}/>
+                <DotsCanvas setServerData={setServerData} rValue={rButtonValue} points={allUserPoints} newDot={newDot}/>
             </div>
 
 
         </main>
+        <div className="pointsSection">
+            <PointsTable points={allUserPoints} newPoint={serverData}/>
+        </div>
+        </div>
 
 
-    )
+
+)
 
 
 }

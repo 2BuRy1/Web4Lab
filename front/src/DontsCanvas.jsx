@@ -1,7 +1,7 @@
 import {forwardRef, useEffect, useRef} from "react";
 import {doPost, drawDot} from "./utils/scripts";
 
-export const DotsCanvas = forwardRef(({setServerData, rValue, points}) => {
+export const DotsCanvas = forwardRef(({setServerData, rValue, points, newDot}) => {
     const dotsCanvasRef = useRef(null);
 
     function handleDotsDrawing(event) {
@@ -51,6 +51,16 @@ export const DotsCanvas = forwardRef(({setServerData, rValue, points}) => {
             });
         }
     }, [points]);
+
+    useEffect(() => {
+        console.log("meow")
+        console.log(newDot.x)
+        console.log(newDot.status)
+        drawDot(dotsCanvasRef.current, newDot.x * newDot.r, newDot.y * newDot.r, newDot.status ? 'green' : 'red');
+
+
+
+    }, [newDot])
 
 
 

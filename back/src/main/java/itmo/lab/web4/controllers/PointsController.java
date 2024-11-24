@@ -44,20 +44,20 @@ public class PointsController {
     @GetMapping("/points")
     public ResponseEntity<Map<String, ArrayList<Point>>> rofl(@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
 
-    String jwt = token.substring(7);
+        String jwt = token.substring(7);
 
-    String username = jwtUtil.extractUsername(jwt);
+        String username = jwtUtil.extractUsername(jwt);
 
-    User user = userRepository.findByUsername(username).get();
+        User user = userRepository.findByUsername(username).get();
 
-    ArrayList<Point> points = (ArrayList<Point>) pointRepository.findAllByUser_Id(user.getId());
+        ArrayList<Point> points = (ArrayList<Point>) pointRepository.findAllByUser_Id(user.getId());
 
 
-    Map<String, ArrayList<Point>> map = new HashMap<>();
+        Map<String, ArrayList<Point>> map = new HashMap<>();
 
-    map.put("points", points);
+        map.put("points", points);
 
-    return ResponseEntity.ok(map);
+        return ResponseEntity.ok(map);
 
     }
 
@@ -71,11 +71,8 @@ public class PointsController {
         String username = jwtUtil.extractUsername(jwt);
 
 
-
-
-            Point checkedPoint = pointsService.checkHit(point, username);
-            return ResponseEntity.ok(checkedPoint);
-
+        Point checkedPoint = pointsService.checkHit(point, username);
+        return ResponseEntity.ok(checkedPoint);
 
 
     }
