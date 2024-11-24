@@ -1,7 +1,7 @@
 import {forwardRef, useState} from "react";
 
 
-export function InputText(props, required=true) {
+export const InputText = forwardRef((props, ref) => {
     return(
         <label htmlFor={props.id}>
             <input type ={props.type}
@@ -9,13 +9,16 @@ export function InputText(props, required=true) {
                    placeholder={props.name}
                    value={props.value}
                    onChange={props.onChange}
-                   required={required}
+                   required={true}
                    className={props.class}
+                   ref={ref}
             />
         </label>
     )
 
-}
+})
+
+
 
 
 

@@ -9,7 +9,9 @@ itmo/lab/web4/controllers/PointsController.class
 itmo/lab/web4/services/PointsService.class
 itmo/lab/web4/configurations/AuthConfiguration.class
 itmo/lab/web4/services/JwtUtil.class
+itmo/lab/web4/exceptionHandler/GlobalExceptionHandler.class
 itmo/lab/web4/controllers/AuthController.class
+itmo/lab/web4/services/AreaChecker.class
 itmo/lab/web4/services/Validator.class
 itmo/lab/web4/Web4Application.class
 itmo/lab/web4/models/Point.class

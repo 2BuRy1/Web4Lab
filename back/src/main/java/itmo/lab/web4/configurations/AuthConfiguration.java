@@ -24,7 +24,7 @@ public class AuthConfiguration {
 
 
     @Bean
-    public UserDetailsService userDetailsService() {
+    public UserDetailsService userDetailsService() throws UsernameNotFoundException {
         return username -> userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(username));
     }
@@ -41,7 +41,6 @@ public class AuthConfiguration {
 
    @Bean
    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-   authenticationConfiguration.getAuthenticationManager();
     return authenticationConfiguration.getAuthenticationManager();
     }
 

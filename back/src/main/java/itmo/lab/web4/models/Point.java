@@ -67,6 +67,14 @@ public class Point {
         return r;
     }
 
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public boolean getStatus() {
+        return this.status;
+    }
+
     @Override
     public String toString(){
         return "x: %f, y: %f, r: %f".formatted(this.x,this.y,this.r);

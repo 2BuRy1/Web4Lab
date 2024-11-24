@@ -6,10 +6,12 @@
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/configurations/WebConfig.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/controllers/AuthController.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/controllers/PointsController.java
+/Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/exceptionHandler/GlobalExceptionHandler.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/models/Point.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/models/User.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/repositories/PointRepository.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/repositories/UserRepository.java
+/Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/services/AreaChecker.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/services/AuthService.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/services/JwtUtil.java
 /Users/montana/MyLabs/Web/Web4Lab/back/src/main/java/itmo/lab/web4/services/PointsService.java

@@ -22,10 +22,12 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody User user){
-        String token = authService.login(user);
-        Map<String, String> response = new HashMap<>();
-        response.put("token", token);
 
+        String token = authService.login(user);
+
+        Map<String, String> response = new HashMap<>();
+
+        response.put("token", token);
 
         return ResponseEntity.ok(response);
     }
@@ -33,19 +35,17 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<Map<String, String>> register(@RequestBody User user){
+
         String token = authService.register(user);
 
         Map<String, String> response = new HashMap<>();
+
         response.put("token", token);
 
         return ResponseEntity.ok(response);
     }
-    @GetMapping("/rofls")
-    public ResponseEntity<Map<String, String>> getRofls() {
-        HashMap <String, String> map = new HashMap<>();
-        map.put("rofl", "rofl");
-        return ResponseEntity.ok(map);
-    }
+
+
 
 
 

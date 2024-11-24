@@ -27,7 +27,6 @@ export function Registration({ setIsAuthenticated }) {
 
     function validate() {
         if (password !== secondPassword) {
-            console.log("lolka")
             return false;
         }
 
@@ -52,6 +51,7 @@ export function Registration({ setIsAuthenticated }) {
 
         if (!validate()) {
             secondPasswordRef.current.classList.add("is-invalid");
+            return;
         }
 
         fetch("http://localhost:8080/register", requestContent)
@@ -104,6 +104,7 @@ export function Registration({ setIsAuthenticated }) {
                            onChange={(e) => handleSecondPassword(e)}
                            value={secondPassword}
                            class="authInputs"
+                           ref = {secondPasswordRef}
 
                 />
                 <Button onClick={handleSubmit}

@@ -37,7 +37,7 @@ export function Authentication({ setIsAuthenticated }) {
             return;
         }
 
-        fetch("http://localhost:8080/register", requestContent)
+        fetch("http://localhost:8080/login", requestContent)
             .then(response => {
                 if (response.ok) {
                     response.json().then((data) => {

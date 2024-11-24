@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -53,14 +54,14 @@ public class AuthService {
         return jwtUtil.generateToken(securityUser.getUsername());
     }
 
-    public String login(User presentUser){
+    public String login(User presentUser) throws UsernameNotFoundException {
         authenticationManager.
                 authenticate(new UsernamePasswordAuthenticationToken(presentUser.getUsername(),
                        presentUser.getPassword()));
         logger.info("Username: " + presentUser.getUsername());
         logger.info("Password: " + presentUser.getPassword());
 
-        User user = userRepository.findByUsername(presentUser.getUsername()).orElseThrow();
+        User user = userRepository.findByUsername(presentUser.getUsername()).orElseThrow(() -> new UsernameNotFoundException("UserNotFound"));
 
         return jwtUtil.generateToken(user.getUsername());
     }

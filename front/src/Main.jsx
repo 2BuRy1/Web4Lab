@@ -1,25 +1,72 @@
 import {InputText} from "./props/Input";
 import {Button} from "./props/Button";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {Canvas} from "./Canvas";
 import {useNavigate} from "react-router-dom";
+import {DotsCanvas} from "./DontsCanvas";
+import {PointsTable} from "./PointsTable";
+
 
 
 export function Main( {setAuthenticated} ){
 
     const [xButtonValue, setXButtonValue] = useState("");
     const [yInputValue, setYInputValue] = useState("");
-    const [rButtonValue, setRButtonValue] = useState("");
+    const [rButtonValue, setRButtonValue] = useState(1);
+    const [serverData, setServerData] = useState({});
+    const [allUserPoints, setAllUserPoints] = useState([]);
     const navigate = useNavigate();
+    const yRef = useRef(null)
+
+
+    useEffect(() => {
+
+        if(serverData.error === 403) {
+            setAuthenticated(false);
+            localStorage.removeItem("jwt");
+            navigate("/login")
+        }
+
+        console.log(serverData);
+
+    }, [serverData]);
+
+
+
 
     function handleYInput(e){
         setYInputValue(e.target.value);
     }
 
 
+    function checkLetters(){
+
+        const hasLetters = /[A-Za-zА-Яа-я]/.test(yInputValue)
+        console.log(yRef.current);
+        if (!hasLetters) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
     function handleRChange(e){
         setRButtonValue(e.target.value);
     }
+
+    function validate(){
+
+        let validY =  !yInputValue;
+
+        let validR = !rButtonValue;
+        let validX = !xButtonValue;
+        return (!validY && !validR && !validX && parseFloat(yInputValue) >=-5 && parseFloat(yInputValue)<=3 && checkLetters());
+    }
+
+
+
+
 
 
     function handleXChange(e){
@@ -29,6 +76,12 @@ export function Main( {setAuthenticated} ){
 
     function handleAddPoint(){
 
+        if(!checkLetters()){
+            yRef.current.classList.add("is-invalid");
+
+        }
+
+        console.log(checkLetters())
 
         const requestContent = {
             method: "POST",
@@ -44,7 +97,11 @@ export function Main( {setAuthenticated} ){
 
         }
 
-        fetch("http://localhost:8080/addPoint", requestContent)
+        if(!validate()){
+            return;
+        }
+
+        fetch("http://localhost:8080/checkHit", requestContent)
             .then(response => response.json())
             .then((data) => console.log(data))
 
@@ -66,19 +123,15 @@ export function Main( {setAuthenticated} ){
 
 
         fetch("http://localhost:8080/points",requestContent )
-            .then(response => {
-                if(!response.ok) {
+            .then(async response => {
+                if (!response.ok) {
                     setAuthenticated(false);
                     localStorage.removeItem("jwt");
                     navigate("/login")
-                }
-                else{
-                    response.json().then((data) => {
-                        const points = data.points; points.forEach((point) => {
-                            console.log(point)
-                        })
+                } else {
+                    const data = await response.json()
+                    setAllUserPoints(data.points);
 
-                    });
                 }
 
             })
@@ -136,40 +189,51 @@ export function Main( {setAuthenticated} ){
                     <InputText id="yInput"
                                type="text"
                                name="-5...3"
-                               onChange ={(e) =>handleYInput(e)}
-                               value ={yInputValue}
+                               onChange={(e) => handleYInput(e)}
+                               value={yInputValue}
+                               ref={yRef}
+                    />
+
+                </div>
+
+
+                <div className="rSelection" id="rButtons">
+                    <Button
+                        onClick={(e) => handleRChange(e)}
+                        value="1"
+                        class="rButtons"/>
+                    <Button
+                        onClick={(e) => handleRChange(e)}
+                        value="2"
+                        class="rButtons"/>
+                    <Button
+                        onClick={(e) => handleRChange(e)}
+                        value="3"
+                        class="rButtons"/>
+                    <Button
+                        onClick={(e) => handleRChange(e)}
+                        value="4"
+                        class="rButtons"/>
+                    <Button
+                        onClick={(e) => handleRChange(e)}
+                        value="5"
+                        class="rButtons"/>
+                    <Button
+                        onClick={(e) => handleAddPoint(e)}
+                        value = "Отправить"
+                        class = "sendButton"
                     />
                 </div>
-
-
-                    <div className="rSelection" id="rButtons">
-                <Button
-                    onClick={(e) => handleRChange(e)}
-                    value="1"
-                    class="rButtons"/>
-                <Button
-                    onClick={(e) => handleRChange(e)}
-                    value="2"
-                    class="rButtons"/>
-                <Button
-                    onClick={(e) => handleRChange(e)}
-                    value="3"
-                    class="rButtons"/>
-                <Button
-                    onClick={(e) => handleRChange(e)}
-                    value="4"
-                    class="rButtons"/>
-                <Button
-                    onClick={(e) => handleRChange(e)}
-                    value="5"
-                    class="rButtons"/>
             </div>
-        </div>
             <div className="canvasSelection">
-                    <Canvas rValue={rButtonValue}/>
+                    <Canvas rValue={rButtonValue} />
+                    <DotsCanvas setServerData={setServerData} rValue={rButtonValue} points={allUserPoints}/>
                 </div>
-            <input type={"button"} onClick={handleAddPoint}/>
+            <div className="tableSection">
 
+                <PointsTable points={allUserPoints} newPoint={serverData}/>
+
+            </div>
 
 
         </main>
