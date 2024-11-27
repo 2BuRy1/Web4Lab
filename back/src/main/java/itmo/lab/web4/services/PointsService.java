@@ -29,8 +29,6 @@ public class PointsService {
     private UserRepository userRepository;
 
 
-
-
     public Point checkHit(Point point, String username) throws BadRequestException {
 
 

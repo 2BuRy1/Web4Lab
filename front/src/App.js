@@ -4,6 +4,7 @@ import {Main} from "./Main";
 import {Authentication} from "./Authentication";
 import {Registration} from "./Registration";
 import "./styles/style.css"
+import "./styles/mobileDevicesStyle.css"
 
 
 function App() {

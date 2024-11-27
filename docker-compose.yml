@@ -6,7 +6,7 @@ networks:
 
 services:
 
-  back:
+  backend:
     build:
       context: ./
       dockerfile: ./back/Dockerfile
@@ -28,3 +28,15 @@ services:
       POSTGRES_DB: mydb
     networks:
       - it-mo
+
+
+  front:
+    build:
+      context: ./
+      dockerfile: ./front/Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - it-mo
+    depends_on:
+      - backend

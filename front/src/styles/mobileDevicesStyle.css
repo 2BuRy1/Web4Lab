@@ -1,0 +1,61 @@
+/*!* Десктопный режим (ширина экрана >= 1202px) *!*/
+/*@media (min-width: 1202px) {*/
+/*    .registration, .authentication {*/
+/*        width: 40rem;*/
+/*    }*/
+
+/*    .points-table {*/
+/*        width: 40%;*/
+/*    }*/
+
+/*    .canvasSelection {*/
+/*        width: 600px;*/
+/*        height: 600px;*/
+/*    }*/
+/*}*/
+
+/*!* Планшетный режим (725px <= ширина экрана < 1202px) *!*/
+/*@media (min-width: 725px) and (max-width: 1201px) {*/
+/*    .registration, .authentication {*/
+/*        width: 30rem;*/
+/*        padding: 0.8rem;*/
+/*    }*/
+
+/*    .canvasSelection {*/
+/*        width: 450px;*/
+/*        height: 450px;*/
+/*    }*/
+
+/*    .points-table {*/
+/*        width: 60%;*/
+/*    }*/
+/*}*/
+
+/*!* Мобильный режим (ширина экрана < 725px) *!*/
+/*@media (max-width: 724px) {*/
+/*    .registration, .authentication {*/
+/*        width: 90%;*/
+/*        padding: 0.5rem;*/
+/*    }*/
+
+/*    .canvasSelection {*/
+/*        width: 300px;*/
+/*        height: 300px;*/
+/*    }*/
+
+/*    .points-table {*/
+/*        width: 100%;*/
+/*    }*/
+
+/*    .pointsSection {*/
+/*        height: auto;*/
+/*    }*/
+
+/*    .authNavigate, .registerNavigate {*/
+/*        justify-content: center;*/
+/*    }*/
+
+/*    #toRegisterButton, #toAuthButton {*/
+/*        width: 100%;*/
+/*    }*/
+/*}*/

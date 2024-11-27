@@ -131,6 +131,7 @@ main{
     position: relative;
     width: 500px;
     height: 500px;
+    aspect-ratio: 1;
     border: 1px solid black;
     border-radius: 2px;
 }
@@ -211,6 +212,15 @@ main{
 
 .invalidY{
     font-size: 100px;
+}
+
+.canvasSelection {
+    position: relative;
+    width: 500px;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    border: 1px solid black;
 }
 
 .sendButton{
@@ -294,4 +304,99 @@ main{
 
 .points-table .miss {
     background-color: #f8d7da;
+}
+
+
+@media (max-width: 1202px) and (min-width: 725px) {
+    .authentication, .registration {
+        width: 70%;
+    }
+
+
+
+    .variables {
+
+        width: 50%;
+        margin: 0;
+    }
+
+    .canvasSelection{
+        margin: 1rem;
+        aspect-ratio: 1;
+    }
+
+    .ySelection{
+        width: auto;
+        margin: 0;
+    }
+
+    #yInput{
+        width: 5rem;
+    }
+
+    .canvasSelection{
+        margin: 1rem;
+        height: 500px;
+        width: 500px;
+    }
+
+    .pointsSection{
+        margin-top: 1rem;
+
+    }
+
+
+    .xSelection{
+        display: flex;
+        height: auto;
+        flex-direction: column;
+    }
+
+    .xButtons{
+    }
+
+
+}
+
+@media (max-width: 725px) {
+    .authentication, .registration {
+        width: 90%;
+    }
+
+    html, body{
+        height: fit-content;
+    }
+
+    .canvasSelection{
+        height: 500px;
+        width: 500px;
+    }
+
+    main {
+        flex-direction: column;
+
+    }
+
+    .variables {
+        width: 90%;
+        margin: 2rem 0;
+    }
+
+    .authNavigate, .registerNavigate {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    #toRegisterButton, #toAuthButton {
+        width: 100%;
+    }
+
+    #registerButton {
+        width: 100%;
+    }
+
+    .points-table {
+        width: 100%;
+    }
 }
