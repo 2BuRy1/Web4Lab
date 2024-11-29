@@ -363,6 +363,11 @@ main{
         width: 90%;
     }
 
+
+    #yInput{
+        width: 5rem;
+    }
+
     html, body{
         height: fit-content;
     }

@@ -55,7 +55,7 @@ export function Registration({ setIsAuthenticated }) {
             return;
         }
 
-        fetch("http://localhost:8080/register", requestContent)
+        fetch("/register", requestContent)
             .then(response => {
                 if (response.ok) {
                     response.json().then((data) => {

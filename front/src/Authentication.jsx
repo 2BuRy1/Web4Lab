@@ -40,7 +40,7 @@ export function Authentication({ setIsAuthenticated }) {
 
         setErrorMessage("");
 
-        fetch("http://localhost:8080/login", requestContent)
+        fetch("/login", requestContent)
             .then(response => {
                 if (response.ok) {
                     response.json().then((data) => {
