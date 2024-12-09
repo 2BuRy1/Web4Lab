@@ -25,21 +25,21 @@ import java.util.logging.Logger;
 @RestController
 public class PointsController {
 
-    @Autowired
-    private JwtUtil jwtUtil;
 
-    @Autowired
-    private PointRepository pointRepository;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private Logger logger;
 
-    @Autowired
-    private PointsService pointsService;
 
+    private final JwtUtil jwtUtil;
+
+    private final PointsService pointsService;
+
+    @Autowired
+    public PointsController(JwtUtil jwtUtil, PointsService pointsService){
+        this.pointsService = pointsService;
+        this.jwtUtil = jwtUtil;
+    }
 
     @GetMapping("/points")
     public ResponseEntity<Map<String, ArrayList<Point>>> rofl(@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
@@ -48,16 +48,19 @@ public class PointsController {
 
         String username = jwtUtil.extractUsername(jwt);
 
-        User user = userRepository.findByUsername(username).get();
+//        User user = userRepository.findByUsername(username).get();
+//        //TODO putUseriMethod
+//        ArrayList<Point> points = (ArrayList<Point>) pointRepository.findAllByUser_Id(user.getId());
+//
+//
+//        Map<String, ArrayList<Point>> map = new HashMap<>();
+//
+//        map.put("points", points);
 
-        ArrayList<Point> points = (ArrayList<Point>) pointRepository.findAllByUser_Id(user.getId());
 
 
-        Map<String, ArrayList<Point>> map = new HashMap<>();
 
-        map.put("points", points);
-
-        return ResponseEntity.ok(map);
+        return ResponseEntity.ok(pointsService.getAllUserPoints(username));
 
     }
 

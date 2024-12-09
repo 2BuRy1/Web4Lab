@@ -10,23 +10,32 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
 public class PointsService {
 
-    @Autowired
-    private Validator validator;
+    private final Validator validator;
+
+
+    private final AreaChecker areaChecker;
+
+
+    private final PointRepository pointRepository;
+
+
+    private final UserRepository userRepository;
+
 
     @Autowired
-    private AreaChecker areaChecker;
-
-    @Autowired
-    private PointRepository pointRepository;
-
-    @Autowired
-    private UserRepository userRepository;
+    public PointsService(Validator validator, AreaChecker areaChecker, PointRepository pointRepository, UserRepository userRepository){
+        this.validator = validator;
+        this.areaChecker = areaChecker;
+        this.pointRepository = pointRepository;
+        this.userRepository = userRepository;
+    }
 
 
     public Point checkHit(Point point, String username) throws BadRequestException {
@@ -46,5 +55,22 @@ public class PointsService {
 
     }
 
+
+
+    public Map<String, ArrayList<Point>> getAllUserPoints(String username){
+
+        User user = userRepository.findByUsername(username).get();
+
+        ArrayList<Point> points = (ArrayList<Point>) pointRepository.findAllByUser_Id(user.getId());
+
+
+        Map<String, ArrayList<Point>> map = new HashMap<>();
+
+        map.put("points", points);
+
+        return map;
+
+
+    }
 
 }

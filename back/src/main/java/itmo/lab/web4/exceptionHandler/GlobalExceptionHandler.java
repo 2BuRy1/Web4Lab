@@ -18,7 +18,6 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body("Ошибка: некорректный формат JSON.");
     }
 
-
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<String> handleBadRequestException(BadRequestException ex, WebRequest request) {
         return ResponseEntity.badRequest().body("Ошибка: некорректный запрос.");

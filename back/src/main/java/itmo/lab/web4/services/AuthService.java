@@ -14,15 +14,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.logging.Logger;
 
-@Slf4j
 @Service
 public class AuthService {
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    Logger logger;
+    private Logger logger;
 
     @Autowired
     private JwtUtil jwtUtil;
