@@ -1,5 +1,5 @@
 import {forwardRef, useEffect, useRef} from "react";
-import {doPost, drawDot} from "./utils/scripts";
+import {doPost, drawDot} from "../utils/scripts";
 
 export const DotsCanvas = forwardRef(({setServerData, rValue, points, newDot}) => {
     const dotsCanvasRef = useRef(null);

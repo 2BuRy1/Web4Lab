@@ -40,7 +40,7 @@ export function Authentication({ setIsAuthenticated }) {
 
         setErrorMessage("");
 
-        fetch("/login", requestContent)
+        fetch("/api/login", requestContent)
             .then(response => {
                 if (response.ok) {
                     response.json().then((data) => {
@@ -66,17 +66,17 @@ export function Authentication({ setIsAuthenticated }) {
             <div className="registerNavigate">
                 <Button
                     onClick={() => navigate("/register")}
-                    value="Зарегистрироваться"
+                    value="Register"
                     id="toRegisterButton"
                 />
             </div>
             <div className="authentication">
-                <h1>Authentication</h1>
+                <h1>Login</h1>
                 <InputText
                     id="username"
                     type="text"
                     name="Login"
-                    ref={usernameRef} // Привязка ссылки к полю ввода
+                    ref={usernameRef}
                     onChange={(e) => handleLogin(e)}
                     value={login}
                     class="authInputs"
@@ -93,7 +93,7 @@ export function Authentication({ setIsAuthenticated }) {
                 {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
                 <Button
                     onClick={handleSubmit}
-                    value="Вход"
+                    value="Login"
                     id="registerButton"
                     class="authInputs"
                 />

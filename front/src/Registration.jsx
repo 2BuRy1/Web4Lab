@@ -55,7 +55,7 @@ export function Registration({ setIsAuthenticated }) {
             return;
         }
 
-        fetch("/register", requestContent)
+        fetch("/api/register", requestContent)
             .then(response => {
                 if (response.ok) {
                     response.json().then((data) => {
@@ -83,7 +83,7 @@ export function Registration({ setIsAuthenticated }) {
             <div className="authNavigate">
                 <Button
                     onClick={() => navigate("/login")}
-                    value="Войти"
+                    value="LogIn"
                     id="toAuthButton"
                 />
             </div>
@@ -115,7 +115,7 @@ export function Registration({ setIsAuthenticated }) {
                 />
                 {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
                 <Button onClick={handleSubmit}
-                        value="Зарегистрироваться"
+                        value="Register"
                         id="registerButton"
                         class="authInputs"
                 />

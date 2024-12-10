@@ -36,7 +36,6 @@ export function doPost(uri, data){
 
 
     }
-
     return fetch(uri, requestContent)
 
 

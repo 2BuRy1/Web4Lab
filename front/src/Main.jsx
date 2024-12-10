@@ -1,9 +1,9 @@
 import {InputText} from "./props/Input";
 import {Button} from "./props/Button";
 import {useEffect, useRef, useState} from "react";
-import {Canvas} from "./Canvas";
+import {Canvas} from "./props/Canvas";
 import {useNavigate} from "react-router-dom";
-import {DotsCanvas} from "./DontsCanvas";
+import {DotsCanvas} from "./props/DontsCanvas";
 import {PointsTable} from "./PointsTable";
 
 
@@ -153,7 +153,7 @@ export function Main( {setAuthenticated} ){
 
             <div className="mainHeader">
                 <Button onClick={handleExit}
-                        value="Выйти"
+                        value="LogOut"
                         class="xButtons"
                         />
             </div>
@@ -238,7 +238,7 @@ export function Main( {setAuthenticated} ){
                         class="rButtons"/>
                     <Button
                         onClick={(e) => handleAddPoint(e)}
-                        value="Отправить"
+                        value="Send"
                         class="sendButton"
                     />
                 </div>
