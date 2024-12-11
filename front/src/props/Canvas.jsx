@@ -1,6 +1,6 @@
 import {forwardRef, useEffect, useRef} from "react";
 
-export const Canvas = forwardRef(({rValue}, onClick) => {
+export const Canvas = forwardRef(({rValue}) => {
     const canvasRef = useRef(null);
 
 

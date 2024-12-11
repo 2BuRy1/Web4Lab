@@ -1,8 +1,7 @@
-version: '3.0'
+version: '3.8'
 
 networks:
-
-    it-mo:
+  it-mo:
 
 services:
 
@@ -15,20 +14,23 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - database
+      - db
 
-
-  database:
-    image: postgres:latest
-    ports:
-      - "5432:5432"
+  db:
+    image: container-registry.oracle.com/database/free:latest
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: mydb
+      ORACLE_PWD: password
+      ORACLE_SID: FREE
+      ORACLE_CHARACTERSET: AL32UTF8
     networks:
       - it-mo
-
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "sqlplus", "-s", "sys/password@FREE as sysdba", "SELECT 1 FROM dual"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
 
   front:
     build:
